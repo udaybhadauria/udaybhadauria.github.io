@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Uday Singh Bhadauria - Portfolio</title>
+  <style>
+    /* Reset & base styles */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+      color: #222;
+      animation: fadeIn 0.6s ease;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    a {
+      color: #007acc;
+      text-decoration: none;
+      transition: color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    a:hover,
+    a:focus {
+      color: #005fa3;
+      transform: scale(1.05);
+      box-shadow: 0 0 8px #007acc66;
+      outline: none;
+    }
+    .resume-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 18px;
+      background-color: #007acc;
+      color: white;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .resume-btn:hover,
+    .resume-btn:focus {
+      background-color: #005fa3;
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #005fa3aa;
+      outline: none;
+    }
+
+    /* Fade-in */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    /* Dark mode */
+    body.dark {
+      background-color: #121212;
+      color: #ddd;
+    }
+    body.dark a {
+      color: #66aaff;
+    }
+    body.dark a:hover,
+    body.dark a:focus {
+      color: #3399ff;
+      box-shadow: 0 0 8px #3399ffbb;
+    }
+    body.dark .resume-btn {
+      background-color: #3399ff;
+    }
+    body.dark .resume-btn:hover,
+    body.dark .resume-btn:focus {
+      background-color: #66aaff;
+      box-shadow: 0 0 10px #66aaffbb;
+    }
+
+    /* Header styles */
+    header {
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      padding: 1rem 2rem;
+      gap: 1.5rem;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      transition: background-color 0.3s;
+    }
+    body.dark header {
+      background: #1e1e1e;
+      box-shadow: 0 2px 6px rgb(255 255 255 / 0.1);
+    }
+    header img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.15);
+      transition: box-shadow 0.3s;
+    }
+    body.dark header img {
+      box-shadow: 0 2px 6px rgb(255 255 255 / 0.15);
+    }
+    .info h1 {
+      margin: 0;
+      font-size: 1.6rem;
+    }
+    .info p {
+      margin: 0.1rem 0;
+      font-weight: 400;
+      line-height: 1.3;
+      color: #444;
+    }
+    body.dark .info p {
+      color: #bbb;
+    }
+    .info a {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    /* Dark mode toggle button */
+    .dark-mode-toggle {
+      margin-left: auto;
+      background: #ddd;
+      border: none;
+      border-radius: 20px;
+      width: 48px;
+      height: 24px;
+      position: relative;
+      cursor: pointer;
+      outline-offset: 3px;
+      transition: background-color 0.3s;
+      flex-shrink: 0;
+    }
+    .dark-mode-toggle[aria-pressed="true"] {
+      background: #3399ff;
+    }
+    .dark-mode-toggle .toggle-thumb {
+      display: block;
+      background: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: left 0.3s;
+    }
+    .dark-mode-toggle[aria-pressed="true"] .toggle-thumb {
+      left: 26px;
+    }
+
+    /* Main content */
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .section {
+      margin-bottom: 3rem;
+    }
+    .projects a {
+      display: block;
+      margin: 0.6rem 0;
+      font-size: 1.1rem;
+    }
+    iframe {
+      width: 100%;
+      height: 450px;
+      border: none;
+      border-radius: 6px;
+      box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+      transition: box-shadow 0.3s;
+    }
+    body.dark iframe {
+      box-shadow: 0 4px 15px rgb(255 255 255 / 0.1);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #888;
+      border-top: 1px solid #eee;
+      margin-top: 3rem;
+    }
+    body.dark footer {
+      color: #666;
+      border-top-color: #444;
+    }
+
+    /* Scroll progress bar */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: #007acc;
+      width: 0%;
+      z-index: 1000;
+      transition: width 0.2s ease-out;
+    }
+    body.dark #scroll-progress {
+      background: #3399ff;
+    }
+  </style>
+</head>
+<body>
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <header>
+    <img src="https://cdn.dribbble.com/users/1816156/screenshots/3858687/hexagon_animated.gif" alt="Uday Singh Bhadauria" />
+    <div class="info">
+      <h1>Uday Singh Bhadauria</h1>
+      <p>Network Engineer | Cisco Certified Internetwork Expert (CCIE #70381)</p>
+      <p>8+ years experience in network, DevOps & automation, and full-stack development</p>
+      <p>
+        <a href="mailto:uday.bhadauria@example.com">uday.bhadauria@example.com</a> | 
+        <a href="tel:+919870498759">+91-9870498759</a>
+      </p>
+      <a class="resume-btn" href="https://drive.google.com/file/d/1D2kgQ8iWREyAxHx__VbnfUP6Irdbkkn9/view?usp=share_link" target="_blank" rel="noopener noreferrer">Resume</a>
+    </div>
+    <button class="dark-mode-toggle" aria-label="Toggle dark mode" title="Toggle dark mode" type="button" aria-pressed="false">
+      <span class="toggle-thumb"></span>
+    </button>
+  </header>
+
+  <main>
+    <section class="section projects" aria-label="Projects">
+      <h2>Projects</h2>
+      <a href="https://github.com/udaybhadauria/InsightForge" target="_blank" rel="noopener noreferrer">InsightForge - AI Business Intelligence Assistant</a>
+      <a href="https://github.com/udaybhadauria/WeatherLogger" target="_blank" rel="noopener noreferrer">Weather Logger API (Flask)</a>
+      <a href="https://github.com/udaybhadauria/DevOpsMonitorStack" target="_blank" rel="noopener noreferrer">DevOps Monitoring Stack with Prometheus & Grafana</a>
+      <a href="https://github.com/udaybhadauria/Device_Telemetry_MQTT" target="_blank" rel="noopener noreferrer">Router Telemetry & SNMP PoC</a>
+      <a href="https://github.com/udaybhadauria/CI-CD-Pipeline-RPi" target="_blank" rel="noopener noreferrer">CI/CD Pipeline on Raspberry Pi with Jenkins</a>
+    </section>
+
+    <section class="section">
+      <h2>Live Demo</h2>
+      <iframe
+        src="https://insightforge.tech/"
+        title="InsightForge AI Business Intelligence Assistant"
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+      ></iframe>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Uday Singh Bhadauria
+  </footer>
+
+  <script>
+    // Dark mode toggle logic
+    const toggle = document.querySelector('.dark-mode-toggle');
+    const body = document.body;
+
+    // Load saved preference or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      body.classList.add('dark');
+      toggle.setAttribute('aria-pressed', 'true');
+    }
+
+    toggle.addEventListener('click', () => {
+      const isDark = body.classList.toggle('dark');
+      toggle.setAttribute('aria-pressed', isDark);
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
+    // Scroll progress bar logic
+    const progressBar = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY || window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      progressBar.style.width = scrollPercent + '%';
+    });
+  </script>
+</body>
+</html>
